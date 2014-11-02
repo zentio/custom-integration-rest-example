@@ -30,6 +30,12 @@ You can use the below `curl` commands to test drive this script.
 ```
 #!bash
 
-curl http://localhost:8000  #=>  {"message":"Requires authentication"}
+curl http://localhost:8000/customers  #=>  {"message":"Requires authentication"}
 ```
- 
+
+```
+#!bash
+
+curl -u zent-io-api-user http://localhost:8000/customers  #  Enter pass123 in the password prompt
+
+```
