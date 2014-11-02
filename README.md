@@ -12,6 +12,9 @@ This is an example service script for creating a custom integration with [www.ze
 php composer.phar install
 ```
 
+### Configuration ###
+The data (i.e. basic auth info, customer data) used in this example service script can be configured by editing the yaml files inside the `data` folder.
+
 ### Run script ###
 
 You can run this service script by using php's built-in webserver with the below command. But you'll probably want to use something like Apache2 or nginx in production.
@@ -36,6 +39,6 @@ curl http://localhost:8000/customers  #=>  {"message":"Requires authentication"}
 ```
 #!bash
 
-curl -u zent-io-api-user http://localhost:8000/customers  #  Enter pass123 in the password prompt
+curl -u zent-io-api-user http://localhost:8000/customers  # This command will prompt for a password.
 
 ```
