@@ -1,0 +1,10 @@
+customer0:
+    name: John Doe
+    email: john@gmail.com
+    phone: 555-555
+    address: 'No. 56, 4th Avenue, New Town, US.'
+
+customer1:
+    name: Bob Singer
+    email: bob@gmail.com
+    address: something
