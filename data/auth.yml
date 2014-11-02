@@ -1,0 +1,3 @@
+basic_auth_realm: My Realm
+basic_auth_username: zentio-api-user
+basic_auth_password: pass123

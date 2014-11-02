@@ -1,29 +1,18 @@
 <?php
 
+// require composer autoloader
 require_once __DIR__.'/vendor/autoload.php';
 
+// import namespaces
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Yaml\Yaml;
 
 /*
- |------------------------
- | Bootstrap
- |-------------------------
+ |-----------------------------------
+ | Some example utility functions
+ |-----------------------------------
 */
-
-function run_basic_authentication()
-{
-    if ( ! isset($_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER'] == 'b')
-    {
-        header('WWW-Authenticate: Basic realm="My Realm"');
-        header('HTTP/1.0 401 Unauthorized');
-
-        echo json_encode(['message' => 'Access denied']);
-        exit;
-    }
-}
-
 
 /**
  * @return array
@@ -42,7 +31,6 @@ function find_customer($email, $phone)
     }
 }
 
-
 /**
  * @return array
  */
@@ -51,16 +39,53 @@ function get_customers()
     return Yaml::parse(file_get_contents(__DIR__.'/data/customers.yml'));
 }
 
+/**
+ * @return array
+ */
+function get_auth_data()
+{
+    return Yaml::parse(file_get_contents(__DIR__.'/data/auth.yml'));
+}
 
 
 /*
  |------------------------------------
- | Define routes using a Silex app
+ | Create Silex app
  |------------------------------------
 */
 
 $app = new Silex\Application();
 $app['debug'] = true;
+
+/*
+ |------------------------------------
+ | Setup HTTP basic authentication
+ |------------------------------------
+*/
+
+$app->before(function() use ($app)
+{
+    $data = get_auth_data();
+
+    if ( ! isset($_SERVER['PHP_AUTH_USER']))
+    {
+        header('WWW-Authenticate: Basic realm="'.$data['basic_auth_realm'].'"');
+
+        return $app->json(['message' => 'Requires authentication'], 401);
+    }
+
+
+    if ($data['basic_auth_username'] !== $_SERVER['PHP_AUTH_USER'] || $data['basic_auth_password'] !== $_SERVER['PHP_AUTH_PW'])
+    {
+        return $app->json(array('message' => 'Forbidden'), 403); // send forbidden if credentials are incorrect
+    }
+});
+
+/*
+ |------------------------------------
+ | Define routes
+ |------------------------------------
+*/
 
 /**
  * GET /
@@ -101,7 +126,4 @@ $app->get('/customers', function(Request $request) use ($app) {
  | And away we go !
  |-------------------------
 */
-
-run_basic_authentication();
-
 $app->run();
