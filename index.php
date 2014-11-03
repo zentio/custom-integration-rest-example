@@ -100,9 +100,9 @@ $app->get('/', function() use ($app) {
  */
 $app->get('/customers', function(Request $request) use ($app) {
 
-    $email = $request->query->get('email');
-    $phone = $request->query->get('phone');
-
+    $email = empty(trim($request->query->get('email'))) ? null : $request->query->get('email');
+    $phone = empty(trim($request->query->get('phone'))) ? null : $request->query->get('phone'); 
+     
     $customer = find_customer($email, $phone);
 
     if ( ! $customer) {
