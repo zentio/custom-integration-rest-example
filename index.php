@@ -113,6 +113,7 @@ $app->get('/customers', function(Request $request) use ($app) {
         'name' => $customer['name'],
         'email' => $customer['email'],
         'phone' => $customer['phone'],
+        'custom_attributes' => $customer['custom_attributes']
     ];
 
 

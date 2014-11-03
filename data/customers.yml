@@ -8,3 +8,30 @@ customer1:
     name: Bob Singer
     email: bob@gmail.com
     address: something
+    custom_attributes:
+       field1:
+          label: "Custom field 1"
+          value: "string value"
+       field2:
+          label: "Custom field 2"
+          value: "string value 2"
+       field3:
+          label: "Custom field 3"
+          value: 99 
+       orders:
+          label: "Last orders"
+          header: ["order id", "price", "item"]
+          value: 
+            - id: 555
+              price: "66€"
+              item: "Product 1"
+            - id: 556
+              price: "88€"
+              item: "Product 2"
+            - id: 557
+              price: "68€"
+              item: "Product 3"
+       field4:
+           label: "Custom field 4"
+           value: 5  
+          
