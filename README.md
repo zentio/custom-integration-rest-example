@@ -1,6 +1,6 @@
 # README #
 
-This is an example service script for creating a custom integration with [www.zent.io](https://www.zent.io).
+This is an example rest service for creating a custom integration with [www.zent.io](https://www.zent.io).
 
 ### Installation ###
 
@@ -17,7 +17,7 @@ The data (i.e. basic auth info, customer data) used in this example service scri
 
 ### Run script ###
 
-You can run this service script by using php's built-in webserver with the below command. But you'll probably want to use something like Apache2 or nginx in production.
+You can start this rest service script by using php's built-in webserver with the below command. But you'll probably want to use something like Apache2 or nginx in production.
 
 ```
 #!bash
