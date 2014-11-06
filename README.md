@@ -1,6 +1,9 @@
 # README #
 
-This is an example rest service for creating a custom integration with [www.zent.io](https://www.zent.io).
+This is an example rest web service implementation for a custom integration with [www.zent.io](https://www.zent.io).
+
+To make things easier we have used the [silex](http://silex.sensiolabs.org) php framework in this example. But when you create your rest web service can use any language or framework you want.
+
 
 ### Installation ###
 
