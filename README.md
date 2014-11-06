@@ -33,12 +33,12 @@ You can use the below `curl` commands to test drive this script.
 ```
 #!bash
 
-curl http://localhost:8000/customers  #=>  {"message":"Requires authentication"}
+curl 'http://localhost:8000/customers?email=john@gmail.com&phone=555-555'  #=>  {"message":"Requires authentication"}
 ```
 
 ```
 #!bash
 
-curl -u zent-io-api-user http://localhost:8000/customers  # This command will prompt for a password.
+curl -u username:password 'http://localhost:8000/customers?email=john@gmail.com&phone=555-555' #=> { "id": 1, "name": "John Watson", "email": ...}
 
 ```
